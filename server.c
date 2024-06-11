@@ -6,7 +6,7 @@
 /*   By: kami <kami@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:06:50 by kami              #+#    #+#             */
-/*   Updated: 2024/06/11 16:54:04 by kami             ###   ########.fr       */
+/*   Updated: 2024/06/11 18:12:06 by kami             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,24 @@
 
 void	handle_sigusr(int sig, siginfo_t *info, void *msg)
 {
-	static int				i;
+	static int				binary_i = 7;
 	static int				pid_printed;
 	static unsigned char	c;
 
-	i = 7;
 	(void)msg;
 	if (pid_printed != 1 && info != NULL)
 	{
-		ft_printf("Receiving signal from PID %s%d%s\n\n", \
-				KCYN, info->si_pid, KNRM);
+		ft_printf("FROM PID %s%d%s\n\n", KCYN, info->si_pid, KNRM);
 		pid_printed = 1;
 	}
 	if (sig == SIGUSR1)
-		c |= (1 << i);
-	i--;
-	if (i < 0 && c)
+		c |= (1 << binary_i);
+	binary_i--;
+	if (binary_i < 0 && c)
 	{
 		ft_putchar_fd(c, STDOUT_FILENO);
 		c = 0;
+		binary_i = 7;
 		if (kill(info->si_pid, SIGUSR2) == -1)
 			ft_errhandle("cannot send SIGUSR2");
 		return ;
