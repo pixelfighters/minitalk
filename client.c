@@ -6,7 +6,7 @@
 /*   By: kami <kami@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:06:50 by kami              #+#    #+#             */
-/*   Updated: 2024/06/11 12:06:33 by kami             ###   ########.fr       */
+/*   Updated: 2024/06/11 14:40:21 by kami             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ int	main(int argc, char** argv)
 	pid_t		server_pid;
 	if(check_args(argc, argv))
 	{
-		ft_printf("Sendig %s%s%s to PID: %s%s%s\n", KYEL, argv[2], KNRM, KCYN, argv[1], KNRM);
+		ft_print_ascii_art("TALK CLIENT", KCYN, 1);
+		ft_printf("\nSendig %s%s%s to PID: %s%s%s\n", KYEL, argv[2], KNRM, KCYN, argv[1], KNRM);
 		server_pid = ft_atoi(argv[1]);
 		config_signals();
 		send_msg(server_pid, argv[2]);
@@ -100,5 +101,4 @@ int	main(int argc, char** argv)
 			pause();
 		return (EXIT_SUCCESS);
 	}
-	
 }

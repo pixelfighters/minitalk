@@ -6,7 +6,7 @@
 /*   By: kami <kami@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:06:50 by kami              #+#    #+#             */
-/*   Updated: 2024/06/11 12:27:33 by kami             ###   ########.fr       */
+/*   Updated: 2024/06/11 14:40:09 by kami             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,11 @@ int	main(void)
 	pid_t	pid;
 	
 	pid = getpid();
-	ft_printf("SERVER PID = %s%d%s\n\n", KCYN, pid, KNRM);
+	ft_print_ascii_art("TALK SERVER", KCYN, 1);
+	ft_printf("\nSERVER PID = %s%d%s\n\n", KCYN, pid, KNRM);
 	while (1)
 		{
 			config_signals();
-
 		}
-
 	return (EXIT_SUCCESS);
 }
