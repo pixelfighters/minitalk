@@ -6,7 +6,7 @@
 /*   By: kami <kami@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:06:50 by kami              #+#    #+#             */
-/*   Updated: 2024/06/11 18:12:06 by kami             ###   ########.fr       */
+/*   Updated: 2024/06/11 18:27:26 by kami             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 void	handle_sigusr(int sig, siginfo_t *info, void *msg)
 {
-	static int				binary_i = 7;
+	static int				binary_i;
 	static int				pid_printed;
 	static unsigned char	c;
 
+	binary_i = 7;
 	(void)msg;
 	if (pid_printed != 1 && info != NULL)
 	{
