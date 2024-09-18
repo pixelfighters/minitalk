@@ -6,7 +6,7 @@
 /*   By: kami <kami@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:06:50 by kami              #+#    #+#             */
-/*   Updated: 2024/06/11 18:27:26 by kami             ###   ########.fr       */
+/*   Updated: 2024/09/18 17:51:09 by kami             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 
 void	handle_sigusr(int sig, siginfo_t *info, void *msg)
 {
-	static int				binary_i;
-	static int				pid_printed;
+	static int				i = -1;
+	static int pid_printed;
 	static unsigned char	c;
 
-	binary_i = 7;
 	(void)msg;
-	if (pid_printed != 1 && info != NULL)
+    if (pid_printed != 1 && info != NULL) 
 	{
-		ft_printf("FROM PID %s%d%s\n\n", KCYN, info->si_pid, KNRM);
-		pid_printed = 1;
-	}
+        ft_printf("Receiving signal from PID %s%d%s\n\n", KCYN, info->si_pid, KNRM);
+        pid_printed = 1;
+    }
+	if (i < 0)
+		i = 7;
 	if (sig == SIGUSR1)
-		c |= (1 << binary_i);
-	binary_i--;
-	if (binary_i < 0 && c)
+		c |= (1 << i);
+	i--;
+	if (i < 0 && c)
 	{
 		ft_putchar_fd(c, STDOUT_FILENO);
 		c = 0;
-		binary_i = 7;
 		if (kill(info->si_pid, SIGUSR2) == -1)
 			ft_errhandle("cannot send SIGUSR2");
 		return ;
@@ -62,8 +62,10 @@ int	main(void)
 	ft_print_ascii_art("TALK SERVER", KCYN, 1);
 	ft_printf("\nSERVER PID = %s%d%s\n\n", KCYN, pid, KNRM);
 	while (1)
-	{
-		config_signals();
-	}
+		{
+			config_signals();
+
+		}
+
 	return (EXIT_SUCCESS);
 }

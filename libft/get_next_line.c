@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschuh <fschuh@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kami <kami@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:19:59 by kami              #+#    #+#             */
-/*   Updated: 2024/06/04 17:14:35 by fschuh           ###   ########.fr       */
+/*   Updated: 2024/09/18 17:41:39 by kami             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char	*get_next_line(int fd)
 	return (r_content);
 }
 
-int main() 
+/* int main() 
 {
 	// int fd = open("a.out", O_RDONLY);
 	int fd = open("test.txt", O_RDONLY);
@@ -126,3 +126,4 @@ int main()
 	close(fd);
 	return 0;
 }
+ */
