@@ -5,7 +5,7 @@ INC = ./includes
 
 # Compiler and Flags
 UNAME := $(shell uname)
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -I$(INC) -I$(LIBFT_DIR) -O3 -g
 LFLAGS = -L$(LIBFT_DIR) -lft -L$(MINILIBX_DIR) -lm
 

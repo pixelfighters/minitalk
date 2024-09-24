@@ -6,7 +6,7 @@
 /*   By: kami <kami@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:06:50 by kami              #+#    #+#             */
-/*   Updated: 2024/09/24 09:11:06 by kami             ###   ########.fr       */
+/*   Updated: 2024/09/24 12:03:20 by kami             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,17 @@ void	send_msg(pid_t sv_pid, char *msg)
 		}
 		msg++;
 	}
+	c = '\0';
+	nbr_bits = 8;
+	while (nbr_bits--)
+	{
+		if (c & 0b10000000)
+			kill(sv_pid, SIGUSR1);
+		else
+			kill(sv_pid, SIGUSR2);
+		usleep(50);
+		c <<= 1;
+	}
 }
 
 void	signal_actions(int signum)
@@ -64,7 +75,7 @@ void	signal_actions(int signum)
 
 	if (signum == SIGUSR2)
 	{
-		bytes_written = ft_printf("%cclient received char!%s\n", KGRN, KNRM);
+		bytes_written = ft_printf("%cServer received Message.%s\n\n", KGRN, KNRM);
 		if (bytes_written == -1)
 		{
 			ft_errhandle("Error writing to stdout");
@@ -96,8 +107,6 @@ int	main(int argc, char **argv)
 		server_pid = ft_atoi(argv[1]);
 		config_signals();
 		send_msg(server_pid, argv[2]);
-		while (1)
-			pause();
 		return (EXIT_SUCCESS);
 	}
 	else
@@ -105,4 +114,5 @@ int	main(int argc, char **argv)
 		ft_print_ascii_art("Failure", KRED, 1);
 		return (EXIT_FAILURE);
 	}
+	return (0);
 }
