@@ -6,7 +6,7 @@
 /*   By: kami <kami@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:06:50 by kami              #+#    #+#             */
-/*   Updated: 2024/09/24 12:03:20 by kami             ###   ########.fr       */
+/*   Updated: 2024/09/24 14:09:21 by kami             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	send_msg(pid_t sv_pid, char *msg)
 				kill(sv_pid, SIGUSR1);
 			else
 				kill(sv_pid, SIGUSR2);
-			usleep(50);
+			usleep(100);
 			c <<= 1;
 		}
 		msg++;

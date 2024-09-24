@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   oldserver.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kami <kami@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:06:50 by kami              #+#    #+#             */
-/*   Updated: 2024/09/24 14:09:01 by kami             ###   ########.fr       */
+/*   Updated: 2024/09/24 13:33:36 by kami             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 #include "libft.h"
 
-static int pid_printed;
 static int handler_configured = 0;
- 
+
 void	handle_sigusr(int sig, siginfo_t *info, void *msg)
 {
 	static int				i = -1;
+	static int				pid_printed;
 	static unsigned char	c;
 
+	pid_printed = info->si_pid;
+
 	(void)msg;
-	// ft_printf("pid_printed: %d - info->si_pid: %d\n", pid_printed, info->si_pid);
 	if (pid_printed != info->si_pid && info != NULL && handler_configured <= 1)
 	{
 		ft_printf("Signal from PID %s%d%s\n\n", KCYN, info->si_pid, KNRM);
