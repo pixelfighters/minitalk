@@ -6,7 +6,7 @@
 /*   By: kami <kami@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:06:50 by kami              #+#    #+#             */
-/*   Updated: 2024/09/18 17:51:09 by kami             ###   ########.fr       */
+/*   Updated: 2024/09/24 08:37:12 by kami             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 void	handle_sigusr(int sig, siginfo_t *info, void *msg)
 {
 	static int				i = -1;
-	static int pid_printed;
+	static int				pid_printed;
 	static unsigned char	c;
 
 	(void)msg;
-    if (pid_printed != 1 && info != NULL) 
+	if (pid_printed != 1 && info != NULL)
 	{
-        ft_printf("Receiving signal from PID %s%d%s\n\n", KCYN, info->si_pid, KNRM);
-        pid_printed = 1;
-    }
+		ft_printf("Signal from PID %s%d%s\n\n", KCYN, info->si_pid, KNRM);
+		pid_printed = 1;
+	}
 	if (i < 0)
 		i = 7;
 	if (sig == SIGUSR1)
@@ -59,13 +59,11 @@ int	main(void)
 	pid_t	pid;
 
 	pid = getpid();
-	ft_print_ascii_art("TALK SERVER", KCYN, 1);
-	ft_printf("\nSERVER PID = %s%d%s\n\n", KCYN, pid, KNRM);
+	ft_print_ascii_art("TALK SERVER", KCYN, 1);	
+	ft_printf("SERVER PID = %s%d%s\n\n", KCYN, pid, KNRM);
 	while (1)
-		{
-			config_signals();
-
-		}
-
+	{
+		config_signals();
+	}
 	return (EXIT_SUCCESS);
 }
