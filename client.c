@@ -6,7 +6,7 @@
 /*   By: kami <kami@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:06:50 by kami              #+#    #+#             */
-/*   Updated: 2024/09/24 08:45:18 by kami             ###   ########.fr       */
+/*   Updated: 2024/09/24 09:11:06 by kami             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ int	check_args(int argc, char **argv)
 {
 	if (argc != 3)
 	{
-		ft_print_ascii_art("ERROR", KRED, 1);	
+		ft_print_ascii_art("ERROR", KRED, 1);
 		ft_errhandle("Invalid input.\nPlease enter <PID> and Message.");
 		return (0);
 	}
 	if (!ft_isdigit(argv[1][1]))
 	{
-		ft_print_ascii_art("ERROR", KRED, 1);	
+		ft_print_ascii_art("ERROR", KRED, 1);
 		ft_errhandle("Invalid PID.\nPlease enter valid <PID>.");
 		return (0);
 	}
 	if (argv[2] == NULL)
 	{
-		ft_print_ascii_art("ERROR", KRED, 1);	
+		ft_print_ascii_art("ERROR", KRED, 1);
 		ft_errhandle("Invalid Message.\nPlease enter valid Message.");
 		return (0);
 	}
@@ -90,7 +90,7 @@ int	main(int argc, char **argv)
 
 	if (check_args(argc, argv))
 	{
-		ft_print_ascii_art("TALK CLIENT", KCYN, 1);		
+		ft_print_ascii_art("TALK CLIENT", KCYN, 1);
 		ft_printf("Sendig %s%s%s to PID: %s%s%s\n",
 			KYEL, argv[2], KNRM, KCYN, argv[1], KNRM);
 		server_pid = ft_atoi(argv[1]);
@@ -102,7 +102,7 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		ft_print_ascii_art("Failure", KRED, 1);		
+		ft_print_ascii_art("Failure", KRED, 1);
 		return (EXIT_FAILURE);
 	}
 }
