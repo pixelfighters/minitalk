@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kami <kami@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fschuh <fschuh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:06:50 by kami              #+#    #+#             */
-/*   Updated: 2024/09/24 14:09:21 by kami             ###   ########.fr       */
+/*   Updated: 2024/10/09 11:46:12 by fschuh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	send_msg(pid_t sv_pid, char *msg)
 				kill(sv_pid, SIGUSR1);
 			else
 				kill(sv_pid, SIGUSR2);
-			usleep(100);
+			usleep(50);
 			c <<= 1;
 		}
 		msg++;
@@ -75,7 +75,7 @@ void	signal_actions(int signum)
 
 	if (signum == SIGUSR2)
 	{
-		bytes_written = ft_printf("%cServer received Message.%s\n\n", KGRN, KNRM);
+		bytes_written = ft_printf("%sServer received Message.%s\n\n", KGRN, KNRM);
 		if (bytes_written == -1)
 		{
 			ft_errhandle("Error writing to stdout");
@@ -85,15 +85,17 @@ void	signal_actions(int signum)
 
 void	config_signals(void)
 {
-	struct sigaction	sa_newsig;
+    struct sigaction	sa_newsig;
 
-	ft_memset(&sa_newsig, 0, sizeof(sa_newsig));
-	sa_newsig.sa_handler = signal_actions;
-	if (sigaction(SIGUSR1, &sa_newsig, NULL) == -1)
-		ft_errhandle("Failed to change SIGUSR1's behavior");
-	if (sigaction(SIGUSR2, &sa_newsig, NULL) == -1)
-		ft_errhandle("Failed to change SIGUSR2's behavior");
+    ft_memset(&sa_newsig, 0, sizeof(sa_newsig));
+    sa_newsig.sa_handler = signal_actions;
+    // sa_newsig.sa_flags = SA_RESTART; 
+    if (sigaction(SIGUSR1, &sa_newsig, NULL) == -1)
+        ft_errhandle("Failed to change SIGUSR1's behavior");
+    if (sigaction(SIGUSR2, &sa_newsig, NULL) == -1)
+        ft_errhandle("Failed to change SIGUSR2's behavior");
 }
+
 
 int	main(int argc, char **argv)
 {

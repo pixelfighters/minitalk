@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kami <kami@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fschuh <fschuh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:06:50 by kami              #+#    #+#             */
-/*   Updated: 2024/09/24 14:09:01 by kami             ###   ########.fr       */
+/*   Updated: 2024/10/09 11:45:55 by fschuh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	handle_sigusr(int sig, siginfo_t *info, void *msg)
     {
         if (c == '\0')
         {
-            ft_printf("\nMessage complete.\n\n");
+            ft_printf("\n%sMessage complete.%s\n\n", KGRN, KNRM);
             if (kill(info->si_pid, SIGUSR2) == -1)
                 ft_errhandle("cannot send SIGUSR2");
             c = 0;

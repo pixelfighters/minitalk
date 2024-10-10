@@ -3,27 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   oldserver.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kami <kami@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fschuh <fschuh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:06:50 by kami              #+#    #+#             */
-/*   Updated: 2024/09/24 13:33:36 by kami             ###   ########.fr       */
+/*   Updated: 2024/10/09 11:41:53 by fschuh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 #include "libft.h"
 
+static int pid_printed;
 static int handler_configured = 0;
-
+ 
 void	handle_sigusr(int sig, siginfo_t *info, void *msg)
 {
 	static int				i = -1;
-	static int				pid_printed;
 	static unsigned char	c;
 
-	pid_printed = info->si_pid;
-
 	(void)msg;
+	// ft_printf("pid_printed: %d - info->si_pid: %d\n", pid_printed, info->si_pid);
 	if (pid_printed != info->si_pid && info != NULL && handler_configured <= 1)
 	{
 		ft_printf("Signal from PID %s%d%s\n\n", KCYN, info->si_pid, KNRM);
@@ -38,7 +37,7 @@ void	handle_sigusr(int sig, siginfo_t *info, void *msg)
     {
         if (c == '\0')
         {
-            ft_printf("\nMessage complete.\n\n");
+            ft_printf("\n%sMessage complete.%s\n\n", KGRN, KNRM);
             if (kill(info->si_pid, SIGUSR2) == -1)
                 ft_errhandle("cannot send SIGUSR2");
             c = 0;
