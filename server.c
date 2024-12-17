@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server_2.c                                         :+:      :+:    :+:   */
+/*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kami <kami@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:06:50 by kami              #+#    #+#             */
-/*   Updated: 2024/12/03 20:41:19 by kami             ###   ########.fr       */
+/*   Updated: 2024/12/17 17:03:50 by kami             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	extended_action(char *c, int *received, int *client_pid, int *bit)
 	ft_printf("%c", *c);
 	if (*c == '\0')
 	{
-		ft_printf("\n%s%d signals%s recieved from client PID: %d%s\n",
-			KGRN, *received, KNRM, *client_pid, KNRM);
+		ft_printf("\n\n%s%d signals%s recieved from client PID: %s%d%s\n",
+			KGRN, *received, KNRM, KCYN, *client_pid, KNRM);
 		*received = 0;
 		*c = 0;
 		if (kill(*client_pid, SIGUSR1) == -1)

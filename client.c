@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_2.c                                         :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kami <kami@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:06:50 by kami              #+#    #+#             */
-/*   Updated: 2024/12/03 20:41:03 by kami             ###   ########.fr       */
+/*   Updated: 2024/12/17 16:59:23 by kami             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ void	success(int sig)
 int	main(int argc, char **argv)
 {
 	pid_t	server_pid;
-
-	ft_printf("argv1 atoi %d", ft_atoi(argv[1]));
 	if (argc == 3 && (ft_atoi(argv[1]) > 0))
 	{
 		ft_print_ascii_art("TALK CLIENT", KCYN, 1);
