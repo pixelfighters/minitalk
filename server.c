@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kami <kami@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fschuh <fschuh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:06:50 by kami              #+#    #+#             */
-/*   Updated: 2024/12/17 17:03:50 by kami             ###   ########.fr       */
+/*   Updated: 2025/02/26 12:57:00 by fschuh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	action(int sig, siginfo_t *info, void *context)
 	if (bit == 8)
 		extended_action(&c, &received, &client_pid, &bit);
 	c <<= 1;
-	usleep(100);
+	usleep(20);
 	kill(client_pid, SIGUSR2);
 }
 

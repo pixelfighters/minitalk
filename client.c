@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kami <kami@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fschuh <fschuh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:06:50 by kami              #+#    #+#             */
-/*   Updated: 2024/12/17 16:59:23 by kami             ###   ########.fr       */
+/*   Updated: 2025/02/26 12:51:56 by fschuh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	convert(unsigned char c, int pid)
 		c <<= 1;
 		bit++;
 		pause();
-		usleep(100);
+		usleep(10);
 	}
 }
 
@@ -71,6 +71,7 @@ void	success(int sig)
 int	main(int argc, char **argv)
 {
 	pid_t	server_pid;
+
 	if (argc == 3 && (ft_atoi(argv[1]) > 0))
 	{
 		ft_print_ascii_art("TALK CLIENT", KCYN, 1);
